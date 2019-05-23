@@ -16,4 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('/', 'Admin\AdminController@index')->name('overview');
-Route::get('/', 'Admin\AdminController@log')->name('log');
+Route::get('/log', 'Admin\AdminController@log')->name('log');

@@ -10,6 +10,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+    const ADMIN_TYPE   = 'admin';
+    const DEFAULT_TYPE = 'default';
+
     use Notifiable, HasApiTokens;
 
     /**
@@ -38,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isAdmin()
+    {
+        return $this->type === self::ADMIN_TYPE;
+    }
+
 }
