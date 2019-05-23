@@ -1,0 +1,11 @@
+Using version ^3.0 for irazasyed/telegram-bot-sdk
+./composer.json has been updated
+Loading composer repositories with package information
+Updating dependencies (including require-dev)
+Package operations: 1 install, 0 updates, 0 removals
+  - Installing irazasyed/telegram-bot-sdk (v3.0.0): Downloading (connecting...)Downloading (0%)           Downloading (5%)Downloading (10%)Downloading (15%)Downloading (20%)Downloading (25%)Downloading (30%)Downloading (35%)Downloading (40%)Downloading (45%)Downloading (50%)Downloading (55%)Downloading (60%)Downloading (70%)Downloading (75%)Downloading (85%)Downloading (90%)Downloading (100%)
+irazasyed/telegram-bot-sdk suggests installing irazasyed/larasupport (Allows you to use any Laravel Package in Lumen by adding support!)
+Writing lock file
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postAutoloadDump
+> @php artisan package:discover --ansi
