@@ -15,6 +15,8 @@ Route::group(
     function () {
         Route::post('logout', 'User\UserController@logout')->name('logout');
 
+        Route::post('log', 'Admin\AdminController@log')->name('log');
+
         Route::group(
             [
                 'prefix' => 'refrige'

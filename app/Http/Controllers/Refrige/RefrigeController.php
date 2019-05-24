@@ -27,7 +27,7 @@ class RefrigeController extends Controller
             $transaction->transaction($drinks);
 
             foreach($drinks as $id => $amount) {
-                $currentAmount = (int) $drink->where('id', $id)->first()-> amount + $amount;
+                $currentAmount = (int) $drink->where('id', $id)->first()->amount + $amount;
 
                 $drink->where('id', $id)->update(['amount' => $currentAmount]);
             }
@@ -36,5 +36,7 @@ class RefrigeController extends Controller
         } finally {
             DB::commit();
         }
+
+        return response()->json($this->successStatus);
     }
 }

@@ -8,6 +8,6 @@ class Drink extends Model
 {
     public function transactionsHistory()
     {
-        return $this->belongsToMany(Transaction::class, 'drinks_transactions')->withTimeStamps();
+        return $this->belongsToMany(Transaction::class, 'drinks_transactions')->withTimestamps();
     }
 }

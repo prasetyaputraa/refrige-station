@@ -8,7 +8,7 @@ class Transaction extends Model
 {
     public function transactionsDetail()
     {
-        return $this->belongsToMany(Drink::class, 'drinks_transactions')->withTimeStamps();
+        return $this->belongsToMany(Drink::class, 'drinks_transactions')->withTimestamps();
     }
 
     public function transaction($drinks)
