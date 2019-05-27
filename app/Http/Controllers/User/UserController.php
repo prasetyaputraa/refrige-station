@@ -13,8 +13,6 @@ use App\Models\User;
 class UserController extends Controller
 {
 
-    public $successStatus = 200;
-
     public function login()
     {
         if (Auth::attempt(['email' => request('email'), 'password' => request('password')])) {
@@ -44,14 +42,18 @@ class UserController extends Controller
 
         if ($validator->fails()) {
 
-            return response()->json(['errors', $validator->errors()], 401);
+            return response()->json(['errors' => $validator->errors()], 401);
         }
 
         $input = $request->all();
 
         $input['password'] = bcrypt($input['password']);
 
-        $user = User::create($input);
+        try {
+            $user = User::create($input);
+        } catch (Exception $e) {
+            return response()->json(array('errors' => array($e->getMessage()), 500));
+        }
 
         $success['token'] = $user->createToken('Refrige')->accessToken;
 

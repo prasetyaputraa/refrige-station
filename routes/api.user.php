@@ -24,6 +24,8 @@ Route::group(
                 Route::post('addBottles', 'Refrige\RefrigeController@addBottles')->name('addbottles');
 
                 Route::post('subBottles', 'Refrige\RefrigeController@subtractBottles')->name('subbottles');
+
+                Route::post('transaction', 'Refrige\RefrigeController@transaction')->name('transaction');
             }
         );
     }
