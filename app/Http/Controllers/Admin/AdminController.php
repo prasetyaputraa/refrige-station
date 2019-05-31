@@ -31,6 +31,26 @@ class AdminController extends Controller
         return view('admin/index.blade.php')->with($drinks);
     }
 
+    public function overview()
+    {
+        $drink = new Drink();
+
+        $drinks = $drink->get();
+
+        return response()->json($drinks, 200);
+    }
+
+    public function photo()
+    {
+
+        $transaction = new Transaction();
+
+        $photo = $transaction->latest()->first()->photo;
+
+        return response()->json(['photo' => $photo], 200);
+
+    }
+
     protected function log(Request $request)
     {
         $transaction = new Transaction();
