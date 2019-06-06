@@ -42,7 +42,6 @@ class AdminController extends Controller
 
     public function photo()
     {
-
         $transaction = new Transaction();
 
         $photo = $transaction->latest()->first()->photo;

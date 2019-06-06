@@ -30,9 +30,6 @@ class RefrigeController extends Controller
     {
         $input = $request->all();
 
-        //$drinks = $input[$drinks];
-        //
-        //$drinks_ = json_decode($request->getContent(), true);
         $drinks_ = json_decode($request->drinks, true);
 
         $drinks = [];
@@ -51,8 +48,6 @@ class RefrigeController extends Controller
             $absAmount = abs($amount);
 
             array_push($messageBody, "{$absAmount} botol {$name} {$action}");
-
-            //$messageBody = Arr::add($messageBody, "{$absAmount} botol {$name} {$action}");
         }
 
         try {
@@ -88,8 +83,7 @@ class RefrigeController extends Controller
 
         $this->notification(implode(", ", $messageBody));
 
-        return response()->json(['photo' => asset($photo)], $this->successStatus);
-        //return response()->json(['photo' => Storage::url($photo)], $this->successStatus);
+        return response()->json(['photo' => Storage::url($photo)], $this->successStatus);
     }
 
     public function notification($messageBody)
