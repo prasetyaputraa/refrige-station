@@ -46,8 +46,9 @@ class AdminController extends Controller
 
         $photo = $transaction->latest()->first()->photo;
 
-        return response()->json(['photo' => $photo], 200);
+        $photo = str_replace("public", "storage", $photo);
 
+        return response()->json($photo, 200);
     }
 
     protected function log(Request $request)
@@ -68,10 +69,6 @@ class AdminController extends Controller
                 case 2:
                     break;
                 case 3:
-                    //$thisMonthTransactions = $transaction->whereMonth('created_at', Carbon::now()->month)->get();
-
-                    //$result = $this->getTransactionArray($thisMonthTransactions, true);
-                    
                     $query = DB::table('drinks_transactions')
                         ->join('drinks', 'drinks.id', '=', 'drinks_transactions.drink_id')
                         ->join('transactions', 'transactions.id', '=', 'drinks_transactions.transaction_id')
@@ -88,9 +85,9 @@ class AdminController extends Controller
                     $itemN = 0;
 
                     foreach ($query as $q) {
-                        $items[$itemN]['name'] = $q->name;
+                        $items[$itemN]['name']     = $q->name;
                         $items[$itemN]['capacity'] = $q->capacity;
-                        $items[$itemN]['amount'] = $q->amount;
+                        $items[$itemN]['amount']   = $q->amount;
 
                         $itemN++;
                     }
@@ -109,7 +106,6 @@ class AdminController extends Controller
         }
 
         return response()->json($result);
-        //return view('admin/log.blade.php')->with($data);
     }
 
     protected function getTransactionArray($transactions, $groupBy = false)

@@ -17,7 +17,8 @@ Route::group(
 
         Route::post('log', 'Admin\AdminController@log')->name('log');
         Route::post('overview', 'Admin\AdminController@overview')->name('overview');
-        Route::post('refrige-photo', 'Admin\AdminController@photo')->name('refrige-photO');
+
+        Route::get('refrige-photo', 'Admin\AdminController@photo')->name('refrige-photo');
 
         Route::group(
             [
