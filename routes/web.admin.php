@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-Route::get('/', 'Admin\AdminController@index')->name('overview');
+Route::get('/home', 'Admin\AdminController@index')->name('overview');
 Route::get('/log', 'Admin\AdminController@log')->name('log');

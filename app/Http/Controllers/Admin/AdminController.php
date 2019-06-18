@@ -22,13 +22,24 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $drink = new Drink();
+        $drink       = new Drink();
+        $transaction = new Transaction();
 
         $drinks = $drink->get();
+        $photo  = $transaction->latest()->first()->photo;
 
-        return view('admin/index.blade.php')->with($drinks);
+        $data = [
+            'drinks' => $drinks,
+            'photo' => str_replace("public", "storage", $photo)
+        ];
+
+        return view('admin/overview')->with($data);
+    }
+
+    public function logView(Request $request)
+    {
     }
 
     public function overview()
@@ -55,7 +66,7 @@ class AdminController extends Controller
     {
         $transaction = new Transaction();
 
-        $log = $request['log'];
+        $log = (int)$request['log'];
 
         $result = [];
 
@@ -103,6 +114,15 @@ class AdminController extends Controller
             }
         } catch (Exception $e) {
             return response()->json(array(500));
+        }
+
+        if (in_array('web', $request->route()->action['middleware'])) {
+            return view('admin/log')->with(
+                array(
+                    'log'    => $log,
+                    'result' => $result
+                )
+            );
         }
 
         return response()->json($result);
